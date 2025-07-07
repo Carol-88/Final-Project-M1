@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
+    />
+    <meta
+      name="description"
+      content="Portfolio de Carolina Romero - Desarrolladora Web Frontend"
+    />
+    <meta name="theme-color" content="#eba7a7" />
+    <title>Carolina Romero | Desarrolladora Web</title>
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lexend:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="container header-content">
+        <a href="index.html" class="site-branding">
+          <img
+            src="assets/images/portrait.jpeg"
+            alt="Imagen de perfil de Carolina Romero"
+            class="profile-image"
+            width="40"
+            height="40"
+          />
+          <span class="site-title">Carolina Romero</span>
+        </a>
+
+        <button
+          class="menu-toggle"
+          aria-label="Menú de navegación"
+          aria-expanded="false"
+        >
+          <span class="hamburger"></span>
+        </button>
+
+        <nav class="main-nav" id="main-nav">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="#hero" class="nav-link">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a href="#technologies" class="nav-link">Tecnologías</a>
+            </li>
+            <li class="nav-item">
+              <a href="#projects" class="nav-link">Proyectos</a>
+            </li>
+            <li class="nav-item">
+              <a href="#contact" class="nav-link button button--outline"
+                >Contacto</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section id="hero" class="hero-section">
+        <div class="container hero-content">
+          <div class="hero-text">
+            <h1 class="hero-title">
+              Hola, soy <span class="highlight">Carolina</span>
+            </h1>
+            <p class="hero-subtitle">
+              Desarrolladora Web apasionada por crear experiencias digitales
+              increíbles.
+            </p>
+            <div class="hero-cta">
+              <a href="#projects" class="button button--primary"
+                >Ver Proyectos</a
+              >
+              <a href="#contact" class="button button--outline">Contáctame</a>
+            </div>
+          </div>
+          <div class="hero-image">
+            <img
+              src="assets/images/portrait.jpeg"
+              alt="Carolina Romero"
+              width="400"
+              height="400"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section id="technologies" class="technologies-section">
+        <div class="container">
+          <h2>Tecnologías</h2>
+          <div class="technologies-grid">
+            <div class="tech-item fade-in slide-up">
+              <img
+                src="assets/images/html.png"
+                alt="Icono HTML5"
+                loading="lazy"
+              />
+              <p>HTML5</p>
+            </div>
+            <div
+              class="tech-item fade-in slide-up"
+              style="transition-delay: 0.1s"
+            >
+              <img
+                src="assets/images/css.png"
+                alt="Icono CSS3"
+                loading="lazy"
+              />
+              <p>CSS3</p>
+            </div>
+            <div
+              class="tech-item fade-in slide-up"
+              style="transition-delay: 0.2s"
+            >
+              <img
+                src="assets/images/js.png"
+                alt="Icono JavaScript"
+                loading="lazy"
+              />
+              <p>JavaScript</p>
+            </div>
+            <div
+              class="tech-item fade-in slide-up"
+              style="transition-delay: 0.3s"
+            >
+              <img
+                src="assets/images/react.png"
+                alt="Icono React"
+                loading="lazy"
+              />
+              <p>React</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="projects-section">
+        <div class="container">
+          <h2>Mis Proyectos</h2>
+          <div class="projects-grid">
+            <article class="project-card fade-in slide-up">
+              <div class="project-image-container">
+                <img
+                  src="assets/images/bannerauj.jpg"
+                  alt="Imagen del Proyecto 1"
+                  loading="lazy"
+                />
+              </div>
+              <div class="project-card-content">
+                <h3>Nombre del Proyecto 1</h3>
+                <p>
+                  Breve descripción del Proyecto 1. Resalta las tecnologías
+                  clave.
+                </p>
+                <a href="project-detail-1.html" class="button button--outline"
+                  >Ver Detalles</a
+                >
+              </div>
+            </article>
+
+            <article
+              class="project-card fade-in slide-up"
+              style="transition-delay: 0.1s"
+            >
+              <div class="project-image-container">
+                <img
+                  src="assets/images/Banner-Dark-CloudSolute.png"
+                  alt="Imagen del Proyecto 2"
+                  loading="lazy"
+                />
+              </div>
+              <div class="project-card-content">
+                <h3>Nombre del Proyecto 2</h3>
+                <p>
+                  Breve descripción del Proyecto 2. Destaca funcionalidades.
+                </p>
+                <a href="project-detail-2.html" class="button button--outline"
+                  >Ver Detalles</a
+                >
+              </div>
+            </article>
+
+            <article
+              class="project-card fade-in slide-up"
+              style="transition-delay: 0.2s"
+            >
+              <div class="project-image-container">
+                <img
+                  src="assets/images/logopetcare.svg"
+                  alt="Imagen del Proyecto 3"
+                  loading="lazy"
+                />
+              </div>
+              <div class="project-card-content">
+                <h3>Nombre del Proyecto 3</h3>
+                <p>
+                  Breve descripción del Proyecto 3. Menciona el reto resuelto.
+                </p>
+                <a href="project-detail-3.html" class="button button--outline"
+                  >Ver Detalles</a
+                >
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact-section">
+        <div class="container">
+          <h2>Contacto</h2>
+          <p>
+            ¿Tienes una pregunta o una oportunidad? ¡Me encantaría saber de ti!
+          </p>
+          <form
+            class="contact-form fade-in slide-up"
+            action="submit-form.php"
+            method="POST"
+          >
+            <div class="form-group">
+              <label for="name">Nombre Completo:</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                placeholder="Tu nombre"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Correo Electrónico:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="tu.email@ejemplo.com"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Asunto:</label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                required
+                placeholder="Asunto del mensaje"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="message">Mensaje:</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="6"
+                required
+                placeholder="Escribe tu mensaje aquí..."
+              ></textarea>
+            </div>
+
+            <button type="submit" class="button button--primary">
+              Enviar Mensaje
+            </button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="main-footer">
+      <div class="container">
+        <p>
+          &copy; <span id="current-year"></span> Carolina Romero. Todos los
+          derechos reservados.
+        </p>
+        <div class="social-links">
+          <a
+            href="https://github.com/tu-usuario"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Perfil de GitHub"
+            >GitHub</a
+          >
+          <a
+            href="https://linkedin.com/in/tu-usuario"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Perfil de LinkedIn"
+            >LinkedIn</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
