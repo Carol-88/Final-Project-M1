@@ -489,40 +489,26 @@ section:nth-of-type(even) {
   text-align: center;
   position: relative;
   z-index: 1;
-  max-width: 800px; /* Para centrar contenido */
-  margin: 0 auto; /* Para centrar hero-content */
+  max-width: 800px;
+  margin: 0 auto;
   animation: fadeInScaleUp 1s ease-out forwards; /* Animación de entrada */
   opacity: 0;
   transform: scale(0.95);
 }
 
 .hero-title {
-  font-size: 2.5rem; /* Ajustado para mejor legibilidad */
+  font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: var(--spacing-md);
   line-height: 1.2;
-  color: white; /* Blanco para contraste con degradado */
-  text-shadow: 0 3px 6px var(--color-shadow-hover); /* Sombra para el título */
+  color: white;
+  text-shadow: 0 3px 6px var(--color-shadow-hover);
 }
 
 .highlight {
-  color: var(
-    --color-primary-dark
-  ); /* Color de resaltado diferente al del fondo */
+  color: var(--color-primary-dark);
   position: relative;
   display: inline-block;
-  z-index: 0; /* Asegura que el after esté detrás */
-}
-
-.highlight::after {
-  content: "";
-  position: absolute;
-  bottom: 5px;
-  left: 0;
-  width: 100%;
-  height: 8px;
-  z-index: -1;
-  border-radius: 4px;
 }
 
 .hero-subtitle {
@@ -536,13 +522,13 @@ section:nth-of-type(even) {
   display: flex;
   gap: var(--spacing-md);
   justify-content: center;
-  flex-wrap: wrap; /* Asegura que los botones se envuelvan en pantallas pequeñas */
+  flex-wrap: wrap;
 }
 
 .hero-image {
   max-width: 300px;
-  margin: var(--spacing-lg) auto 0; /* Margen superior para separarlo del texto */
-  border-radius: 150px 35px; /* Forma asimétrica original */
+  margin: var(--spacing-lg) auto 0;
+  border-radius: 150px 35px;
   overflow: hidden;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
 }
@@ -592,7 +578,7 @@ section:nth-of-type(even) {
 .tech-item p {
   margin: 0;
   font-weight: 500;
-  color: var(--color-text); /* Cambiado a color-text para más contraste */
+  color: var(--color-text);
 }
 
 /* =====================
@@ -604,7 +590,7 @@ section:nth-of-type(even) {
     var(--color-primary-light) 0%,
     var(--color-secondary) 100%
   );
-  color: var(--color-text); /* Texto oscuro para esta sección */
+  color: var(--color-text);
 }
 
 .projects-grid {
@@ -620,9 +606,7 @@ section:nth-of-type(even) {
     Sección Contacto
     ===================== */
 .contact-section {
-  background-color: var(
-    --color-card-background
-  ); /* Fondo blanco para esta sección */
+  background-color: var(--color-card-background);
 }
 
 .contact-form {
@@ -635,7 +619,6 @@ section:nth-of-type(even) {
 }
 
 .form-group {
-  /* Se cambió de contact-form__group a form-group para reutilizar */
   margin-bottom: var(--spacing-sm);
 }
 
@@ -643,7 +626,7 @@ section:nth-of-type(even) {
   display: block;
   margin-bottom: var(--spacing-xs);
   font-weight: 600;
-  color: var(--color-text); /* Color más oscuro para los labels */
+  color: var(--color-text);
 }
 
 .contact-form input[type="text"],
@@ -653,16 +636,16 @@ section:nth-of-type(even) {
   padding: var(--spacing-xs);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
-  background-color: #fdfdfd; /* Un blanco muy suave */
+  background-color: #fdfdfd;
   transition: border-color var(--transition-speed),
     box-shadow var(--transition-speed);
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-  border-color: var(--color-primary-dark); /* Color más oscuro al enfocar */
+  border-color: var(--color-primary-dark);
   outline: none;
-  box-shadow: 0 0 0 3px rgba(var(--color-primary-dark), 0.3); /* Sombra al enfocar */
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-dark), 0.3);
 }
 
 .contact-form textarea {
@@ -679,15 +662,14 @@ section:nth-of-type(even) {
     Footer
     ===================== */
 .main-footer {
-  background-color: var(--color-text); /* Fondo oscuro para el footer */
-  color: #fff; /* Texto blanco */
+  background-color: var(--color-text);
+  color: var(--color-background);
   padding: var(--spacing-md) 0;
   text-align: center;
   font-size: 0.9rem;
 }
 
 .social-links {
-  /* Se cambió de main-footer__social-links a social-links */
   margin-top: var(--spacing-xs);
 }
 
@@ -805,7 +787,7 @@ section:nth-of-type(even) {
 }
 
 /* Para pantallas pequeñas (ej. móviles) */
-@media (max-width: 767px) {
+@media (max-width: 424px) {
   h1 {
     font-size: 2.2rem;
   }
@@ -850,11 +832,6 @@ section:nth-of-type(even) {
   .button {
     width: 100%; /* Botones de ancho completo */
   }
-
-  /* Oculta los links del nav y el logo en mobile si el diseño lo pide */
-  /* .main-nav {
-        display: none;
-    } */
 }
 
 /* --- Media Query para Desktop (A partir de 768px) --- */
@@ -869,36 +846,36 @@ section:nth-of-type(even) {
     position: static; /* Quita el posicionamiento fijo */
     top: auto; /* Resetea la posición top */
     right: auto; /* Resetea la posición right */
-    width: auto; /* Ancho automático */
-    max-width: none; /* Sin límite de ancho */
-    height: auto; /* Altura automática */
-    background-color: transparent; /* Fondo transparente */
-    box-shadow: none; /* Sin sombra */
-    transition: none; /* Deshabilita transiciones del menú */
-    padding: 0; /* Sin padding específico */
+    width: auto;
+    max-width: none;
+    height: auto;
+    background-color: transparent;
+    box-shadow: none;
+    transition: none;
+    padding: 0;
     overflow-y: visible; /* No hay scrollbar */
-    z-index: auto; /* Z-index automático */
+    z-index: auto;
   }
 
   .nav-list {
-    flex-direction: row; /* ¡Pone los enlaces en línea! */
-    gap: var(--spacing-md); /* Espacio entre los enlaces */
-    padding: 0; /* Sin padding interno */
+    flex-direction: row;
+    gap: var(--spacing-md);
+    padding: 0;
   }
 
   .nav-link {
     padding: var(--spacing-xs) var(--spacing-sm); /* Ajusta el padding para enlaces en línea */
-    color: var(--color-text-light); /* Color por defecto más sutil */
+    color: var(--color-text-light);
   }
 
   .nav-link:hover {
-    color: var(--color-primary-dark); /* Color al pasar el ratón */
-    background-color: transparent; /* Sin fondo al pasar el ratón */
+    color: var(--color-primary-dark);
+    background-color: transparent;
   }
 
   /* Ajusta el botón de Contacto en la nav para desktop */
   .nav-item .button--outline {
-    color: var(--color-primary); /* Color del texto del botón en nav */
+    color: var(--color-primary);
     border-color: var(--color-primary);
   }
 
