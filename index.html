@@ -10,7 +10,6 @@
       name="description"
       content="Portfolio de Carolina Romero - Desarrolladora Web Frontend"
     />
-    <meta name="theme-color" content="#eba7a7" />
     <title>Carolina Romero | Desarrolladora Web</title>
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -46,16 +45,16 @@
         <nav class="main-nav" id="main-nav">
           <ul class="nav-list">
             <li class="nav-item">
-              <a href="#hero" class="nav-link">Inicio</a>
+              <a href="index.html" class="nav-link">Inicio</a>
             </li>
             <li class="nav-item">
               <a href="#technologies" class="nav-link">Tecnologías</a>
             </li>
             <li class="nav-item">
-              <a href="#projects" class="nav-link">Proyectos</a>
+              <a href="projects/detail.html?id=1" class="nav-link">Proyectos</a>
             </li>
             <li class="nav-item">
-              <a href="#contact" class="nav-link button button--outline"
+              <a href="contact.html" class="nav-link button button--outline"
                 >Contacto</a
               >
             </li>
@@ -146,71 +145,9 @@
       <section id="projects" class="projects-section">
         <div class="container">
           <h2>Mis Proyectos</h2>
-          <div class="projects-grid">
-            <article class="project-card fade-in slide-up">
-              <div class="project-image-container">
-                <img
-                  src="assets/images/bannerauj.jpg"
-                  alt="Imagen del Proyecto 1"
-                  loading="lazy"
-                />
-              </div>
-              <div class="project-card-content">
-                <h3>Nombre del Proyecto 1</h3>
-                <p>
-                  Breve descripción del Proyecto 1. Resalta las tecnologías
-                  clave.
-                </p>
-                <a href="project-detail-1.html" class="button button--outline"
-                  >Ver Detalles</a
-                >
-              </div>
-            </article>
-
-            <article
-              class="project-card fade-in slide-up"
-              style="transition-delay: 0.1s"
-            >
-              <div class="project-image-container">
-                <img
-                  src="assets/images/Banner-Dark-CloudSolute.png"
-                  alt="Imagen del Proyecto 2"
-                  loading="lazy"
-                />
-              </div>
-              <div class="project-card-content">
-                <h3>Nombre del Proyecto 2</h3>
-                <p>
-                  Breve descripción del Proyecto 2. Destaca funcionalidades.
-                </p>
-                <a href="project-detail-2.html" class="button button--outline"
-                  >Ver Detalles</a
-                >
-              </div>
-            </article>
-
-            <article
-              class="project-card fade-in slide-up"
-              style="transition-delay: 0.2s"
-            >
-              <div class="project-image-container">
-                <img
-                  src="assets/images/logopetcare.svg"
-                  alt="Imagen del Proyecto 3"
-                  loading="lazy"
-                />
-              </div>
-              <div class="project-card-content">
-                <h3>Nombre del Proyecto 3</h3>
-                <p>
-                  Breve descripción del Proyecto 3. Menciona el reto resuelto.
-                </p>
-                <a href="project-detail-3.html" class="button button--outline"
-                  >Ver Detalles</a
-                >
-              </div>
-            </article>
-          </div>
+          <div class="projects-grid" id="projects-grid">
+  <!-- Las tarjetas de proyectos se generarán dinámicamente por JavaScript -->
+</div>
         </div>
       </section>
 

@@ -175,3 +175,119 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+// --- NUEVA FUNCIONALIDAD: VALIDACIÓN DEL FORMULARIO DE CONTACTO ---
+const contactForm = document.querySelector(".contact-form");
+if (contactForm) {
+  // Asegúrate de que el formulario exista en la página actual
+  contactForm.addEventListener("submit", function (e) {
+    // Evita que el formulario se envíe de forma predeterminada
+    e.preventDefault();
+
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const messageInput = document.getElementById("message");
+
+    let isValid = true;
+    let errorMessage = "";
+
+    // Validación: Campo Nombre vacío
+    if (nameInput.value.trim() === "") {
+      isValid = false;
+      errorMessage += "El campo Nombre es obligatorio.\n";
+      nameInput.classList.add("error"); // Opcional: añadir clase para estilos de error CSS
+    } else {
+      nameInput.classList.remove("error");
+    }
+
+    // Validación: Nombre "ironhack"
+    if (nameInput.value.toLowerCase().trim() === "ironhack") {
+      isValid = false;
+      errorMessage += "No puedes ser Ironhack, porque yo soy Ironhack.\n";
+      nameInput.classList.add("error");
+    }
+
+    // Validación: Email vacío o formato incorrecto (adicional al 'type="email"')
+    if (emailInput.value.trim() === "") {
+      isValid = false;
+      errorMessage += "El campo Correo Electrónico es obligatorio.\n";
+      emailInput.classList.add("error");
+    } else if (
+      !emailInput.value.includes("@") ||
+      !emailInput.value.includes(".")
+    ) {
+      isValid = false;
+      errorMessage += "El formato del correo electrónico no es válido.\n";
+      emailInput.classList.add("error");
+    } else {
+      emailInput.classList.remove("error");
+    }
+
+    // Validación: Mensaje vacío
+    if (messageInput.value.trim() === "") {
+      isValid = false;
+      errorMessage += "El campo Mensaje es obligatorio.\n";
+      messageInput.classList.add("error");
+    } else {
+      messageInput.classList.remove("error");
+    }
+
+    if (!isValid) {
+      alert("Por favor, corrige los siguientes errores:\n" + errorMessage);
+    } else {
+      // Si todo es válido, puedes enviar el formulario.
+      // En un proyecto real, aquí harías una petición AJAX o permitirías el envío normal.
+      // Para este ejercicio, con un alert basta y luego se podría enviar.
+      alert("¡Formulario enviado con éxito!");
+      this.submit(); // Esto envía el formulario si todo es correcto
+    }
+  });
+}
+
+// --- NUEVA FUNCIONALIDAD: CARGAR LOS 3 PRIMEROS PROYECTOS EN INDEX.HTML ---
+const projectsGrid = document.getElementById("projects-grid");
+if (projectsGrid) {
+  // Asegúrate de que este grid exista (solo en index.html)
+  const API_URL = "https://fcd-project-api.onrender.com/projects";
+
+  async function fetchAndDisplayProjects() {
+    try {
+      const response = await fetch(API_URL);
+      if (!response.ok) {
+        throw new Error(`Error HTTP: ${response.status}`);
+      }
+      const projects = await response.json();
+
+      // Obtener solo los 3 primeros proyectos (la API los devuelve en orden descendente,
+      // así que los primeros 3 son los últimos añadidos, como se pide).
+      const latestProjects = projects.slice(0, 3);
+
+      projectsGrid.innerHTML = ""; // Limpia el mensaje de "Cargando..."
+
+      latestProjects.forEach((project, index) => {
+        const projectCard = document.createElement("article");
+        projectCard.classList.add("project-card", "fade-in", "slide-up");
+        // Añadimos un pequeño retraso para un efecto escalonado bonito
+        projectCard.style.transitionDelay = `${index * 0.1}s`;
+
+        projectCard.innerHTML = `
+                        <div class="project-image-container">
+                            <img src="${project.image}" alt="${project.name}" loading="lazy" />
+                        </div>
+                        <div class="project-card-content">
+                            <h3>${project.name}</h3>
+                            <p>${project.description}</p>
+                            <a href="projects/detail.html?id=${project.uuid}" class="button button--outline">Ver Detalles</a>
+                        </div>
+                    `;
+        projectsGrid.appendChild(projectCard);
+      });
+    } catch (error) {
+      console.error("Error al cargar los proyectos:", error);
+      projectsGrid.innerHTML =
+        "<p>Lo siento, no se pudieron cargar los proyectos. Inténtalo de nuevo más tarde.</p>";
+    }
+  }
+
+  fetchAndDisplayProjects(); // Llama a la función para cargar los proyectos al inicio
+}
