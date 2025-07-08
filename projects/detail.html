@@ -8,6 +8,7 @@
   <title>Detalle del Proyecto | Carolina Romero</title>
   <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/detail.css">
 </head>
 <body>
   <header class="main-header">
@@ -29,19 +30,47 @@
       </nav>
     </div>
   </header>
-  <main>
+  
     <section id="project-detail" class="project-detail-section container">
       <div id="project-content">
-      </div>
-      <div id="other-projects">
+        <h2 id="project-name"></h2>
+        <img id="project-image" style="display:none;max-width:100%;height:auto;" />
+        <p id="project-description"></p>
+        <div id="project-body"></div>
+        <p class="completed-date">Finalizado el: <span id="completed-date"></span></p>
       </div>
     </section>
-  </main>
-  <footer class="main-footer">
-    <div class="container">
-      <p>&copy; <span id="year"></span> Carolina Romero. Todos los derechos reservados.</p>
-    </div>
-  </footer>
+    <section id="projects" class="projects-section ">
+      <div class="container">
+        <h2>Mis Proyectos</h2>
+        <div class="projects-grid" id="projects-grid"></div>
+      </div>
+    </section>
+  
+    <footer class="main-footer">
+      <div class="container">
+        <p>
+          &copy; <span id="current-year"></span> Carolina Romero. Todos los
+          derechos reservados.
+        </p>
+        <div class="social-links">
+          <a
+            href="https://github.com/Carol-88"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Perfil de GitHub"
+            >GitHub</a
+          >
+          <a
+            href="https://www.linkedin.com/in/carolina-romero-c/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Perfil de LinkedIn"
+            >LinkedIn</a
+          >
+        </div>
+      </div>
+    </footer>
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/project-detail.js"></script>
 </body>

@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // --- 7. Animación de elementos al hacer scroll (Intersection Observer es más moderno y eficiente) ---
-  const animateOnScroll = new IntersectionObserver(
+window.animateOnScroll = new IntersectionObserver(
     (entries, observer) => {
       // Crea un nuevo "Observador de Intersección".
       // 'entries' es una lista de elementos que están siendo observados y que han cambiado su estado de intersección.
@@ -133,29 +133,25 @@ document.addEventListener("DOMContentLoaded", function () {
   // --- 8. Smooth scroll para enlaces internos ---
   document.querySelectorAll(".nav-link").forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-      // Evita el comportamiento por defecto del navegador (que saltaría directamente a la sección)
-      // para hacerlo de forma suave.
-
       const targetId = this.getAttribute("href");
-      if (targetId === "#") return; // Si el href es solo '#', no hace nada (enlace vacío).
-
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        const headerHeight = header.offsetHeight;
-        // Obtiene la altura actual del header (para que no tape la sección al hacer scroll).
-        // '.offsetHeight' devuelve la altura del elemento incluyendo padding y borde.
-        const targetPosition =
-          targetElement.getBoundingClientRect().top + // distancia del elemento al top del viewport.
-          window.scrollY - // la convierte en una posición absoluta desde el inicio de la página
-          headerHeight - // ajusta esa posición para que el header fijo no tape el inicio de la sección,
-          20; // margen para que no quede justo al borde
-
-        window.scrollTo({
-          top: targetPosition, // La posición vertical a la que queremos ir
-          behavior: "smooth", // desplazamiento suave
-        });
-      }
+      // Solo prevenir comportamiento por defecto si es un enlace interno (sección)
+      if (targetId && targetId.startsWith("#")) {
+        e.preventDefault();
+        if (targetId === "#") return;
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          const headerHeight = header.offsetHeight;
+          const targetPosition =
+            targetElement.getBoundingClientRect().top +
+            window.scrollY -
+            headerHeight -
+            20;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: "smooth",
+          });
+        }
+      } // Si no es un enlace interno, dejar que navegue normalmente
     });
   });
 
@@ -245,10 +241,26 @@ if (contactForm) {
 }
 
 // --- NUEVA FUNCIONALIDAD: CARGAR LOS 3 PRIMEROS PROYECTOS EN INDEX.HTML ---
-const projectsGrid = document.getElementById("projects-grid");
+// Selecciona SOLO el grid de la sección de "Mis Proyectos" más abajo (no el de otros proyectos u otra sección)
+function getMainProjectsGrid() {
+  // Busca todos los grids con id 'projects-grid'
+  const allGrids = document.querySelectorAll('#projects-grid');
+  // Si hay más de uno (como en detail.html), elige el que esté dentro de .projects-section
+  if (allGrids.length > 1) {
+    for (const grid of allGrids) {
+      if (grid.closest('.projects-section')) return grid;
+    }
+    // Si no, usa el último
+    return allGrids[allGrids.length - 1];
+  }
+  // Si solo hay uno, devuélvelo
+  return allGrids[0];
+}
+
+const projectsGrid = getMainProjectsGrid();
 if (projectsGrid) {
-  // Asegúrate de que este grid exista (solo en index.html)
-  const API_URL = "https://fcd-project-api.onrender.com/projects";
+  // Asegúrate de que este grid exista (en index.html o detail.html)
+  const API_URL = "https://raw.githubusercontent.com/ironhack-jc/mid-term-api/main/projects";
 
   async function fetchAndDisplayProjects() {
     try {
@@ -260,32 +272,45 @@ if (projectsGrid) {
 
       // Obtener solo los 3 primeros proyectos (la API los devuelve en orden descendente,
       // así que los primeros 3 son los últimos añadidos, como se pide).
-      const latestProjects = projects.slice(0, 3);
+      // Ordenar por uuid descendente (más reciente primero)
+      const sortedProjects = projects.slice().sort((a, b) => Number(b.uuid) - Number(a.uuid));
+      const latestProjects = sortedProjects.slice(0, 3);
 
       projectsGrid.innerHTML = ""; // Limpia el mensaje de "Cargando..."
 
       latestProjects.forEach((project, index) => {
         const projectCard = document.createElement("article");
         projectCard.classList.add("project-card", "fade-in", "slide-up");
-        // Añadimos un pequeño retraso para un efecto escalonado bonito
         projectCard.style.transitionDelay = `${index * 0.1}s`;
-
+        if (window.animateOnScroll) {
+          window.animateOnScroll.observe(projectCard);
+        }
         projectCard.innerHTML = `
-                        <div class="project-image-container">
-                            <img src="${project.image}" alt="${project.name}" loading="lazy" />
-                        </div>
-                        <div class="project-card-content">
-                            <h3>${project.name}</h3>
-                            <p>${project.description}</p>
-                            <a href="projects/detail.html?id=${project.uuid}" class="button button--outline">Ver Detalles</a>
-                        </div>
-                    `;
+          <div class="project-image-container">
+            <img src="${project.image}" alt="${project.name}" loading="lazy" />
+          </div>
+          <div class="project-card-content">
+            <h3>${project.name}</h3>
+            <p>${project.description}</p>
+            <a href="${getProjectDetailLink(project.uuid)}" class="button button--primary">Ver Detalles</a>
+          </div>
+        `;
         projectsGrid.appendChild(projectCard);
       });
     } catch (error) {
       console.error("Error al cargar los proyectos:", error);
       projectsGrid.innerHTML =
         "<p>Lo siento, no se pudieron cargar los proyectos. Inténtalo de nuevo más tarde.</p>";
+    }
+  }
+
+  // Función utilitaria para generar el enlace correcto según la página
+  function getProjectDetailLink(uuid) {
+    // Si la URL contiene '/projects/', estamos en detail.html
+    if (window.location.pathname.includes('/projects/')) {
+      return `detail.html?id=${uuid}`;
+    } else {
+      return `projects/detail.html?id=${uuid}`;
     }
   }
 

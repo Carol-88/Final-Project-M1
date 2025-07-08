@@ -1,0 +1,89 @@
+/* detail.css - Estilos específicos para la página de detalle de proyecto
+   Sigue el mismo sistema de diseño y variables que style.css
+*/
+
+:root {
+  /* Se heredan todas las variables de style.css */
+}
+
+.project-detail-section {
+  background: var(--color-card-background);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  margin: var(--spacing-lg) auto var(--spacing-xl) auto;
+  max-width: 950px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+#project-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+}
+
+#project-name {
+  font-size: 2.4rem;
+  color: var(--color-primary-dark);
+  margin-bottom: var(--spacing-xs);
+}
+
+#project-image {
+  max-width: 100%;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin: var(--spacing-sm) 0;
+  background: #f8f9fa;
+}
+
+#project-description {
+  font-size: 1.1rem;
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-sm);
+}
+
+#project-body {
+  font-size: 1.1rem;
+  color: var(--color-text);
+  line-height: 1.7;
+  margin-bottom: var(--spacing-sm);
+  width: 100%;
+}
+
+.completed-date {
+  font-size: 1rem;
+  color: var(--color-primary-dark);
+  margin-top: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
+}
+
+#other-projects-grid {
+  margin-top: var(--spacing-lg);
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .project-detail-section {
+    padding: var(--spacing-md) var(--spacing-sm);
+    max-width: 100%;
+  }
+  #project-name {
+    font-size: 2rem;
+  }
+  #project-body {
+    font-size: 1rem;
+  }
+}
+
+/* Ajuste para las cards de otros proyectos dentro de detail */
+#other-projects-grid .project-card {
+  margin-bottom: var(--spacing-md);
+}
+
+/* Ajuste para el grid de "Mis Proyectos" en la parte baja */
+.projects-section {
+  margin-top: var(--spacing-xl);
+}
