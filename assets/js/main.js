@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const menuToggle = document.querySelector(".menu-toggle");
   const mainNav = document.querySelector(".main-nav");
   const navLinks = document.querySelectorAll(".nav-link");
-  // Selecciona TODOS los enlaces de navegación. Devuelve una lista.
+  // Devuelve una lista.
   const header = document.querySelector(".main-header");
 
   // El fondo oscuro que aparece cuando el menú móvil está abierto,
@@ -25,31 +25,25 @@ document.addEventListener("DOMContentLoaded", function () {
     const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
     // Si aria-expanded es true, el menú está abierto.
     // Si es 'false' (o no existe), está cerrado.
-    menuToggle.setAttribute("aria-expanded", !isExpanded);
     // Cambia el valor de 'aria-expanded': si era true, lo pone a false; si era false, a true.
+    menuToggle.setAttribute("aria-expanded", !isExpanded);
     mainNav.classList.toggle("active");
 
     if (!isExpanded) {
       document.body.appendChild(overlay);
-      // Añade el 'overlay' (el div oscuro) al cuerpo del documento.
       overlay.classList.add("active");
-      // Le añade la clase 'active' al overlay.
       document.body.style.overflow = "hidden";
       // Impide que la página principal se pueda desplazar mientras el menú móvil está abierto.
     } else {
-      // Si el menú SÍ estaba expandido (es decir, lo vamos a cerrar ahora):
       overlay.classList.remove("active");
-      // Quita la clase 'active' del overlay.
       overlay.addEventListener("transitionend", function handler() {
         // Añade un "escuchador" de eventos que espera a que la transición CSS del overlay termine.
         if (!overlay.classList.contains("active")) {
           // Si el overlay ya no tiene la clase 'active' (es decir, ya se ha ocultado):
           overlay.remove();
-          // Elimina el elemento 'overlay' del HTML.
           document.body.style.overflow = "";
           // Restaura el scroll en el cuerpo de la página.
           overlay.removeEventListener("transitionend", handler);
-          // Importante: Elimina este "escuchador" para que no se ejecute múltiples veces innecesariamente.
         }
       });
     }
@@ -62,10 +56,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // --- 4. Cierra el menú al hacer clic en un enlace de navegación (solo en móviles) ---
   navLinks.forEach((link) => {
     link.addEventListener("click", () => {
-      // Cuando se hace clic en un enlace:
       if (window.innerWidth < 425) {
-        // Comprueba si el ancho de la ventana es menor a 768px (móvil).
-        toggleMenu(); // Si es así, ejecuta la función 'toggleMenu' para cerrar el menú.
+        toggleMenu(); 
       }
     });
   });
@@ -80,13 +72,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (currentScrollY <= 0) {
       // Si el usuario está en la parte superior de la página (o ha subido del todo):
-      header.style.transform = "translateY(0)";
       // Asegura que el header esté visible.
+      header.style.transform = "translateY(0)";
     } else if (currentScrollY > lastScrollY && currentScrollY > 72) {
       // Si el usuario está bajando
       // Y ya ha bajado más allá de la altura del header
-      header.style.transform = "translateY(-100%)";
       // Oculta el header moviéndolo hacia arriba fuera de la pantalla.
+      header.style.transform = "translateY(-100%)";
     } else if (currentScrollY < lastScrollY) {
       // Si el usuario está subiendo (currentScrollY es menor que lastScrollY):
       header.style.transform = "translateY(0)";
@@ -107,8 +99,8 @@ window.animateOnScroll = new IntersectionObserver(
         if (entry.isIntersecting) {
           // Si el elemento ha entrado en el área visible (viewport):
           entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
           //  Una vez que el elemento se ha animado, dejamos de observarlo.
+          observer.unobserve(entry.target);          
         }
       });
     },
@@ -117,7 +109,6 @@ window.animateOnScroll = new IntersectionObserver(
       root: null, // 'null' significa que el viewport es el área de detección.
       rootMargin: "0px", // No hay margen extra alrededor del viewport.
       threshold: 0.1, // El callback se ejecutará cuando el 10% del elemento sea visible.
-      // Ajustar este valor para que la animación se dispare antes o después.
     }
   );
 
@@ -172,16 +163,15 @@ window.animateOnScroll = new IntersectionObserver(
   });
 });
 
-// --- NUEVA FUNCIONALIDAD: VALIDACIÓN DEL FORMULARIO DE CONTACTO ---
+// --- VALIDACIÓN DEL FORMULARIO DE CONTACTO ---
 const contactForm = document.querySelector(".contact-form");
 if (contactForm) {
-  // Asegúrate de que el formulario exista en la página actual
   contactForm.addEventListener("submit", function (e) {
-    // Evita que el formulario se envíe de forma predeterminada
     e.preventDefault();
 
     const nameInput = document.getElementById("name");
     const emailInput = document.getElementById("email");
+    const subjectInput = document.getElementById("subject");
     const messageInput = document.getElementById("message");
 
     let isValid = true;
@@ -191,13 +181,13 @@ if (contactForm) {
     if (nameInput.value.trim() === "") {
       isValid = false;
       errorMessage += "El campo Nombre es obligatorio.\n";
-      nameInput.classList.add("error"); // Opcional: añadir clase para estilos de error CSS
+      nameInput.classList.add("error"); 
     } else {
       nameInput.classList.remove("error");
     }
 
     // Validación: Nombre "ironhack"
-    if (nameInput.value.toLowerCase().trim() === "ironhack") {
+    if (nameInput.value.trim().toLowerCase() === "ironhack") {
       isValid = false;
       errorMessage += "No puedes ser Ironhack, porque yo soy Ironhack.\n";
       nameInput.classList.add("error");
@@ -209,14 +199,22 @@ if (contactForm) {
       errorMessage += "El campo Correo Electrónico es obligatorio.\n";
       emailInput.classList.add("error");
     } else if (
-      !emailInput.value.includes("@") ||
-      !emailInput.value.includes(".")
+      !/^\S+@\S+\.\S+$/.test(emailInput.value.trim())
     ) {
       isValid = false;
       errorMessage += "El formato del correo electrónico no es válido.\n";
       emailInput.classList.add("error");
     } else {
       emailInput.classList.remove("error");
+    }
+
+    // Validación: Asunto vacío
+    if (subjectInput.value.trim() === "") {
+      isValid = false;
+      errorMessage += "El campo Asunto es obligatorio.\n";
+      subjectInput.classList.add("error");
+    } else {
+      subjectInput.classList.remove("error");
     }
 
     // Validación: Mensaje vacío
@@ -231,17 +229,13 @@ if (contactForm) {
     if (!isValid) {
       alert("Por favor, corrige los siguientes errores:\n" + errorMessage);
     } else {
-      // Si todo es válido, puedes enviar el formulario.
-      // En un proyecto real, aquí harías una petición AJAX o permitirías el envío normal.
-      // Para este ejercicio, con un alert basta y luego se podría enviar.
       alert("¡Formulario enviado con éxito!");
-      this.submit(); // Esto envía el formulario si todo es correcto
+      this.submit(); 
     }
   });
 }
 
-// --- NUEVA FUNCIONALIDAD: CARGAR LOS 3 PRIMEROS PROYECTOS EN INDEX.HTML ---
-// Selecciona SOLO el grid de la sección de "Mis Proyectos" más abajo (no el de otros proyectos u otra sección)
+// --- CARGAR LOS 3 PRIMEROS PROYECTOS EN INDEX.HTML ---
 function getMainProjectsGrid() {
   // Busca todos los grids con id 'projects-grid'
   const allGrids = document.querySelectorAll('#projects-grid');
@@ -253,13 +247,12 @@ function getMainProjectsGrid() {
     // Si no, usa el último
     return allGrids[allGrids.length - 1];
   }
-  // Si solo hay uno, devuélvelo
+  // Si solo hay uno, lo devuelve
   return allGrids[0];
 }
 
 const projectsGrid = getMainProjectsGrid();
 if (projectsGrid) {
-  // Asegúrate de que este grid exista (en index.html o detail.html)
   const API_URL = "https://raw.githubusercontent.com/ironhack-jc/mid-term-api/main/projects";
 
   async function fetchAndDisplayProjects() {
@@ -271,12 +264,10 @@ if (projectsGrid) {
       const projects = await response.json();
 
       // Obtener solo los 3 primeros proyectos (la API los devuelve en orden descendente,
-      // así que los primeros 3 son los últimos añadidos, como se pide).
+      // así que los primeros 3 son los últimos añadidos).
       // Ordenar por uuid descendente (más reciente primero)
       const sortedProjects = projects.slice().sort((a, b) => Number(b.uuid) - Number(a.uuid));
       const latestProjects = sortedProjects.slice(0, 3);
-
-      projectsGrid.innerHTML = ""; // Limpia el mensaje de "Cargando..."
 
       latestProjects.forEach((project, index) => {
         const projectCard = document.createElement("article");
@@ -314,5 +305,8 @@ if (projectsGrid) {
     }
   }
 
-  fetchAndDisplayProjects(); // Llama a la función para cargar los proyectos al inicio
+  // Solo ejecuta en index.html, no en detail.html
+  if (!window.location.pathname.includes('detail.html')) {
+    fetchAndDisplayProjects(); // Llama a la función para cargar los proyectos al inicio
+  }
 }

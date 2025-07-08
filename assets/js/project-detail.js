@@ -7,12 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const projectName = document.getElementById("project-name");
   const projectImage = document.getElementById("project-image");
   const projectDescription = document.getElementById("project-description");
-  const projectContent = document.getElementById("project-content");
   const completedDate = document.getElementById("completed-date");
-  const otherProjectsGrid = document.getElementById("other-projects-grid");
-  const loadingOtherProjects = document.getElementById(
-    "loading-other-projects"
-  ); // Para el mensaje de carga
+  // Selecciona SOLO el grid de la sección 'Mis Proyectos' en detail.html
+  const projectsGrid = document.querySelector('.projects-section #projects-grid');
 
   const API_URL =
     "https://raw.githubusercontent.com/ironhack-jc/mid-term-api/main/projects";
@@ -75,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Función para cargar otros 3 proyectos aleatorios
   async function loadOtherRandomProjects() {
-    if (!otherProjectsGrid) return;
+    if (!projectsGrid) return;
     try {
       const response = await fetch(API_URL);
       if (!response.ok) {
@@ -89,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
       if (availableProjects.length === 0) {
-        otherProjectsGrid.innerHTML =
+        projectsGrid.innerHTML =
           "<p>No hay otros proyectos disponibles.</p>";
         return;
       }
@@ -113,11 +110,11 @@ document.addEventListener("DOMContentLoaded", function () {
       // Para el "random", si la API devuelve menos de 3, simplemente mostramos menos.
       // Para la parte de "si el proyecto no existe", la he puesto en loadSpecificProject.
 
-      otherProjectsGrid.innerHTML = ""; // Limpia el mensaje de "Cargando..."
+      projectsGrid.innerHTML = ""; // Limpia el mensaje de "Cargando..."
 
       randomProjects.forEach((project, index) => {
         const projectCard = document.createElement("article");
-        projectCard.classList.add("project-card", "fade-in", "slide-up");
+        projectCard.classList.add("project-card", "fade-in", "slide-up", "visible"); // Agrega 'visible' para forzar visibilidad
         projectCard.style.transitionDelay = `${index * 0.1}s`;
 
         projectCard.innerHTML = `
@@ -130,15 +127,13 @@ document.addEventListener("DOMContentLoaded", function () {
                         <a href="detail.html?id=${project.uuid}" class="button button--primary">Ver Detalles</a>
                     </div>
                 `;
-        otherProjectsGrid.appendChild(projectCard);
+        projectsGrid.appendChild(projectCard);
       });
     } catch (error) {
       console.error("Error al cargar otros proyectos:", error);
-      otherProjectsGrid.innerHTML =
+      projectsGrid.innerHTML =
         "<p>Lo siento, no se pudieron cargar otros proyectos.</p>";
-    } finally {
-      if (loadingOtherProjects) loadingOtherProjects.remove(); // Asegurarse de quitar el mensaje de carga
-    }
+    } 
 
     const currentYear = new Date().getFullYear();
     const yearElement = document.getElementById("current-year");
