@@ -4,27 +4,26 @@
 :root {
   /* Colores */
   --color-primary: #cf6c7d;
-  --color-primary-light: #eba7a7; /* Un pastel más cálido */
+  --color-primary-light: #eba7a7; 
   --color-primary-dark: #a94d7b;
-  --color-secondary: #e6d2c8; /* Otro pastel cálido */
-  --color-accent: #ffdab9; /* Pastel suave de acento */
-
-  --color-background: #f8f8f8; /* Fondo general claro */
-  --color-card-background: #ffffff; /* Fondo para tarjetas y elementos principales */
-  --color-text: #333333; /* Texto principal oscuro */
-  --color-text-light: #666666; /* Texto secundario más claro */
-  --color-border: #e0e0e0; /* Bordes suaves */
-  --color-shadow: rgba(0, 0, 0, 0.08); /* Sombra suave */
+  --color-secondary: #e6d2c8; 
+  --color-accent: #ffdab9; 
+  --color-background: #f8f8f8; 
+  --color-card-background: #ffffff; 
+  --color-text: #333333; 
+  --color-text-light: #666666; 
+  --color-border: #e0e0e0; 
+  --color-shadow: rgba(0, 0, 0, 0.08); 
   --color-shadow-hover: rgba(
     0,
     0,
     0,
     0.15
-  ); /* Sombra un poco más oscura al pasar el ratón */
+  ); 
 
   /* Tipografía */
-  --font-heading: "Lexend", sans-serif; /* Fuente para títulos (importar en HTML) */
-  --font-body: "Inter", sans-serif; /* Fuente para cuerpo (importar en HTML) */
+  --font-heading: "Lexend", sans-serif; 
+  --font-body: "Inter", sans-serif; 
 
   /* Espaciados */
   --spacing-xs: 0.5rem; /* 8px */
@@ -37,7 +36,7 @@
   --border-radius: 8px;
   --box-shadow: 0 4px 12px var(--color-shadow);
   --box-shadow-hover: 0 8px 20px var(--color-shadow-hover);
-  --transition-speed: 0.3s ease-in-out; /* Velocidad de transición general */
+  --transition-speed: 0.3s ease-in-out; 
 }
 
 /* =====================
@@ -62,8 +61,6 @@ body {
   color: var(--color-text);
   background-color: var(--color-background);
   overflow-x: hidden; /* Evita scroll horizontal */
-  -webkit-font-smoothing: antialiased; /* Suavizado de fuentes para WebKit */
-  text-rendering: optimizeLegibility; /* Optimiza legibilidad del texto */
 }
 
 /* Elementos multimedia */
@@ -90,7 +87,7 @@ select {
 /* Enlaces */
 a {
   text-decoration: none;
-  color: inherit; /* Hereda el color del padre por defecto */
+  color: inherit; 
   transition: color var(--transition-speed);
 }
 
@@ -200,12 +197,12 @@ section:nth-of-type(even) {
 .button--primary:hover {
   background-color: var(--color-primary-dark);
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Usamos un shadow genérico y más discreto */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); 
 }
 
 .button--outline {
   background-color: transparent;
-  color: white; /* Color blanco para los botones de outline en secciones con fondo oscuro (ej. hero) */
+  color: white; 
   border-color: white;
 }
 
@@ -215,7 +212,7 @@ section:nth-of-type(even) {
     255,
     255,
     0.1
-  ); /* Fondo blanco transparente al hover */
+  ); 
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
@@ -231,21 +228,21 @@ section:nth-of-type(even) {
   display: flex;
   flex-direction: column;
   height: 100%;
-  text-align: left; /* Alinea el texto a la izquierda dentro de la tarjeta */
+  text-align: left;
 }
 
 .project-card:hover {
-  transform: translateY(-8px); /* Más notorio que -5px */
+  transform: translateY(-8px); 
   box-shadow: var(--box-shadow-hover);
 }
 
 .project-image-container {
   width: 100%;
-  height: 200px; /* Altura fija para todas las imágenes */
+  height: 200px; 
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f8f9fa; /* Fondo claro para imágenes */
+  background-color: #f8f9fa; 
   overflow: hidden;
 }
 
@@ -254,17 +251,17 @@ section:nth-of-type(even) {
   max-height: 100%;
   width: auto;
   height: auto;
-  object-fit: contain; /* Asegura que la imagen se ajuste sin recortarse */
+  object-fit: contain; 
   transition: transform var(--transition-speed);
 }
 
 .project-card:hover .project-image-container img {
-  transform: scale(1.05); /* Zoom sutil al pasar el ratón */
+  transform: scale(1.05); 
 }
 
 /* Estilo específico para SVG dentro del contenedor de imagen */
 .project-image-container img[src$=".svg"] {
-  padding: 2rem; /* Añade padding para que los SVG no se peguen a los bordes */
+  padding: 2rem; 
 }
 
 .project-card-content {
@@ -278,7 +275,7 @@ section:nth-of-type(even) {
   margin: 0 0 var(--spacing-xs) 0;
   color: var(
     --color-primary-dark
-  ); /* Color más oscuro para el título de la tarjeta */
+  ); 
   font-size: 1.25rem;
 }
 
@@ -286,12 +283,12 @@ section:nth-of-type(even) {
   margin: 0 0 var(--spacing-md) 0;
   color: var(--color-text-light);
   font-size: 0.95rem;
-  flex-grow: 1; /* Permite que el párrafo crezca y empuje el botón hacia abajo */
+  flex-grow: 1; 
 }
 
 .project-card .button {
-  align-self: flex-start; /* Alinea el botón a la izquierda dentro del flex container */
-  margin-top: auto; /* Empuja el botón al final del contenedor flex */
+  align-self: flex-end; 
+  margin-top: auto; 
 }
 
 /* =====================
@@ -313,8 +310,6 @@ section:nth-of-type(even) {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* No duplicar padding si ya lo tiene .container */
-  /* padding: 0 var(--spacing-md);  <- Quitado, ya lo gestiona .container */
 }
 
 .site-branding {
@@ -362,24 +357,24 @@ section:nth-of-type(even) {
 
 .nav-list {
   display: flex;
-  flex-direction: column; /* Apila los enlaces verticalmente */
+  flex-direction: column; 
   gap: var(--spacing-sm);
   padding: 0 var(--spacing-md);
 }
 
 .nav-item {
-  margin: 0; /* Asegura que no haya margen extra */
+  margin: 0; 
 }
 
 .nav-link {
-  display: block; /* Hace que toda el área del link sea clicable */
+  display: block; 
   padding: var(--spacing-sm) var(--spacing-md);
   color: var(--color-text);
   font-weight: 500;
   transition: color var(--transition-speed),
     background-color var(--transition-speed);
   border-radius: var(--border-radius);
-  position: relative; /* Para el efecto de la línea de hover */
+  position: relative;
 }
 
 .nav-link:hover {
@@ -387,7 +382,7 @@ section:nth-of-type(even) {
   background-color: rgba(
     var(--color-primary-light),
     0.1
-  ); /* Usar el pastel más claro */
+  ); 
 }
 
 /* Efecto de línea en los enlaces de navegación */
@@ -398,7 +393,7 @@ section:nth-of-type(even) {
   left: 0;
   width: 0;
   height: 2px;
-  background-color: var(--color-primary-dark); /* Color de la línea de acento */
+  background-color: var(--color-primary-dark); 
   transition: width var(--transition-speed);
 }
 
@@ -470,15 +465,15 @@ section:nth-of-type(even) {
     var(--color-primary-light) 0%,
     var(--color-secondary) 100%
   );
-  color: #fff; /* Texto blanco para el fondo degradado */
+  color: white; 
   padding: var(--spacing-xl) 0;
-  min-height: 80vh; /* Se cambió de 100vh a 80vh, era un poco alto */
+  min-height: 80vh; 
   display: flex;
   align-items: center;
   justify-content: center;
   text-shadow: 0 2px 4px var(--color-shadow-hover);
-  position: relative; /* Para posibles elementos decorativos */
-  overflow: hidden; /* Para contener animaciones si las hubiera */
+  position: relative;
+  overflow: hidden; 
   margin-top: 72px; /* Compensa la altura del header fijo */
 }
 
@@ -513,7 +508,7 @@ section:nth-of-type(even) {
 
 .hero-subtitle {
   font-size: 1.25rem;
-  color: rgba(255, 255, 255, 0.9); /* Blanco semitransparente */
+  color: rgba(255, 255, 255, 0.9); 
   margin-bottom: var(--spacing-lg);
   line-height: 1.6;
 }
@@ -595,7 +590,7 @@ section:nth-of-type(even) {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: 1fr; /* Una columna en móvil */
+  grid-template-columns: 1fr; 
   gap: var(--spacing-lg);
   max-width: 1200px;
   margin: 0 auto;
@@ -825,27 +820,26 @@ section:nth-of-type(even) {
   }
 
   .hero-cta {
-    flex-direction: column; /* Botones apilados en móvil */
+    flex-direction: column; 
     gap: var(--spacing-sm);
   }
 
   .button {
-    width: 100%; /* Botones de ancho completo */
+    width: 100%; 
   }
 }
 
 /* --- Media Query para Desktop (A partir de 768px) --- */
 @media (min-width: 768px) {
-  /* Oculta el botón de hamburguesa en desktop */
   .menu-toggle {
     display: none;
   }
 
   /* Resetea el menú para que se vea en línea en desktop */
   .main-nav {
-    position: static; /* Quita el posicionamiento fijo */
-    top: auto; /* Resetea la posición top */
-    right: auto; /* Resetea la posición right */
+    position: static; 
+    top: auto; 
+    right: auto;
     width: auto;
     max-width: none;
     height: auto;
@@ -853,7 +847,7 @@ section:nth-of-type(even) {
     box-shadow: none;
     transition: none;
     padding: 0;
-    overflow-y: visible; /* No hay scrollbar */
+    overflow-y: visible; 
     z-index: auto;
   }
 
@@ -873,7 +867,7 @@ section:nth-of-type(even) {
     background-color: transparent;
   }
 
-  /* Ajusta el botón de Contacto en la nav para desktop */
+  /* Ajusta el botón de Contacto en la nav */
   .nav-item .button--outline {
     color: var(--color-primary);
     border-color: var(--color-primary);
@@ -884,9 +878,9 @@ section:nth-of-type(even) {
     color: white;
   }
 
-  /* Grid de proyectos en desktop */
+  /* Grid de proyectos */
   .projects-grid {
-    grid-template-columns: repeat(2, 1fr); /* Dos columnas en desktop */
+    grid-template-columns: repeat(2, 1fr); 
   }
 
   /* Grid de proyectos en pantallas grandes */
@@ -895,7 +889,7 @@ section:nth-of-type(even) {
       grid-template-columns: repeat(
         3,
         1fr
-      ); /* Tres columnas en pantallas muy grandes */
+      ); 
     }
   }
 }

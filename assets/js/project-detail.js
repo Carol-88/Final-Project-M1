@@ -7,26 +7,24 @@ document.addEventListener("DOMContentLoaded", function () {
   const projectName = document.getElementById("project-name");
   const projectImage = document.getElementById("project-image");
   const projectDescription = document.getElementById("project-description");
-  const projectContent = document.getElementById("project-content");
   const completedDate = document.getElementById("completed-date");
-  const otherProjectsGrid = document.getElementById("other-projects-grid");
-  const loadingOtherProjects = document.getElementById(
-    "loading-other-projects"
-  ); // Para el mensaje de carga
+  // Selecciona SOLO el grid de la sección 'Mis Proyectos' en detail.html
+  const projectsGrid = document.querySelector('.projects-section #projects-grid');
 
-  const API_URL = "https://fcd-project-api.onrender.com/projects";
+  const API_URL =
+    "https://raw.githubusercontent.com/ironhack-jc/mid-term-api/main/projects";
 
   // Función para obtener el parámetro 'id' de la URL
   function getProjectIdFromUrl() {
     const params = new URLSearchParams(window.location.search);
-    return params.has('id') ? Number(params.get('id')) : null;
+    return params.has("id") ? params.get("id") : null;
   }
 
   // Función para cargar el proyecto según el parámetro 'id'
   async function loadProjectById() {
     const projectId = getProjectIdFromUrl();
     if (!projectId) {
-      alert('No se ha especificado el id del proyecto en la URL.');
+      alert("No se ha especificado el id del proyecto en la URL.");
       projectName.textContent = "Proyecto no encontrado.";
       return;
     }
@@ -37,14 +35,17 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       const projects = await response.json();
       // Buscar el proyecto con el id recibido por query param
-      const specificProject = projects.find((p) => p.uuid === projectId);
+      const specificProject = projects.find(
+        (p) => String(p.uuid) === String(projectId)
+      );
       if (specificProject) {
         projectName.textContent = specificProject.name;
         projectImage.src = specificProject.image;
         projectImage.alt = specificProject.name;
         projectImage.style.display = "block";
         projectDescription.textContent = specificProject.description;
-        projectContent.innerHTML = specificProject.content;
+        document.getElementById("project-body").innerHTML =
+          specificProject.content;
         if (specificProject.completed_on) {
           const date = new Date(specificProject.completed_on);
           const options = { year: "numeric", month: "long", day: "numeric" };
@@ -60,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
             element.classList.add("visible");
           });
       } else {
-        alert('El proyecto solicitado no existe en la API.');
+        alert("El proyecto solicitado no existe en la API.");
         projectName.textContent = "Proyecto no encontrado.";
       }
     } catch (error) {
@@ -71,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Función para cargar otros 3 proyectos aleatorios
   async function loadOtherRandomProjects() {
-    if (!otherProjectsGrid) return; 
+    if (!projectsGrid) return;
     try {
       const response = await fetch(API_URL);
       if (!response.ok) {
@@ -80,10 +81,12 @@ document.addEventListener("DOMContentLoaded", function () {
       const projects = await response.json();
 
       // Filtrar proyectos para excluir el actual (uuid 1)
-      const availableProjects = projects.filter((p) => p.uuid !== 1);
+      const availableProjects = projects.filter(
+        (p) => String(p.uuid) !== String(getProjectIdFromUrl())
+      );
 
       if (availableProjects.length === 0) {
-        otherProjectsGrid.innerHTML =
+        projectsGrid.innerHTML =
           "<p>No hay otros proyectos disponibles.</p>";
         return;
       }
@@ -107,11 +110,11 @@ document.addEventListener("DOMContentLoaded", function () {
       // Para el "random", si la API devuelve menos de 3, simplemente mostramos menos.
       // Para la parte de "si el proyecto no existe", la he puesto en loadSpecificProject.
 
-      otherProjectsGrid.innerHTML = ""; // Limpia el mensaje de "Cargando..."
+      projectsGrid.innerHTML = ""; // Limpia el mensaje de "Cargando..."
 
       randomProjects.forEach((project, index) => {
         const projectCard = document.createElement("article");
-        projectCard.classList.add("project-card", "fade-in", "slide-up");
+        projectCard.classList.add("project-card", "fade-in", "slide-up", "visible"); // Agrega 'visible' para forzar visibilidad
         projectCard.style.transitionDelay = `${index * 0.1}s`;
 
         projectCard.innerHTML = `
@@ -121,17 +124,21 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="project-card-content">
                         <h3>${project.name}</h3>
                         <p>${project.description}</p>
-                        <a href="${project.uuid}.html" class="button button--outline">Ver Detalles</a>
+                        <a href="detail.html?id=${project.uuid}" class="button button--primary">Ver Detalles</a>
                     </div>
                 `;
-        otherProjectsGrid.appendChild(projectCard);
+        projectsGrid.appendChild(projectCard);
       });
     } catch (error) {
       console.error("Error al cargar otros proyectos:", error);
-      otherProjectsGrid.innerHTML =
+      projectsGrid.innerHTML =
         "<p>Lo siento, no se pudieron cargar otros proyectos.</p>";
-    } finally {
-      if (loadingOtherProjects) loadingOtherProjects.remove(); // Asegurarse de quitar el mensaje de carga
+    } 
+
+    const currentYear = new Date().getFullYear();
+    const yearElement = document.getElementById("current-year");
+    if (yearElement) {
+      yearElement.textContent = currentYear;
     }
   }
 
