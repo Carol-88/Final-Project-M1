@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
+    />
+    <meta
+      name="description"
+      content="Portfolio de Carolina Romero - Desarrolladora Web Frontend"
+    />
+    <title>Carolina Romero | Desarrolladora Web</title>
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lexend:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="container header-content">
+        <a href="index.html" class="site-branding">
+          <img
+            src="assets/images/portrait.jpeg"
+            alt="Imagen de perfil de Carolina Romero"
+            class="profile-image"
+            width="40"
+            height="40"
+          />
+          <span class="site-title">Carolina Romero</span>
+        </a>
+
+        <button
+          class="menu-toggle"
+          aria-label="Menú de navegación"
+          aria-expanded="false"
+        >
+          <span class="hamburger"></span>
+        </button>
+
+        <nav class="main-nav" id="main-nav">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a href="index.html#technologies" class="nav-link">Tecnologías</a>
+            </li>
+            <li class="nav-item">
+              <a href="projects/detail.html?id=1" class="nav-link">Proyectos</a>
+            </li>
+            <li class="nav-item">
+              <a href="contact.html" class="nav-link button button--outline"
+                >Contacto</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <h2>Contacto</h2>
+        <p>
+          ¿Tienes una pregunta o una oportunidad? ¡Me encantaría saber de ti!
+        </p>
+        <form
+          class="contact-form fade-in slide-up"
+          action="submit-form.php"
+          method="POST"
+        >
+          <div class="form-group">
+            <label for="name">Nombre Completo:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              placeholder="Tu nombre"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Correo Electrónico:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="tu.email@ejemplo.com"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Asunto:</label>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              required
+              placeholder="Asunto del mensaje"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="message">Mensaje:</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="6"
+              required
+              placeholder="Escribe tu mensaje aquí..."
+            ></textarea>
+          </div>
+
+          <button type="submit" class="button button--primary">
+            Enviar Mensaje
+          </button>
+        </form>
+      </div>
+    </section>
+    <footer class="main-footer">
+      <div class="container">
+        <p>
+          &copy; <span id="current-year"></span> Carolina Romero. Todos los
+          derechos reservados.
+        </p>
+        <div class="social-links">
+          <a
+            href="https://github.com/tu-usuario"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Perfil de GitHub"
+            >GitHub</a
+          >
+          <a
+            href="https://linkedin.com/in/tu-usuario"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Perfil de LinkedIn"
+            >LinkedIn</a
+          >
+        </div>
+      </div>
+    </footer>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
