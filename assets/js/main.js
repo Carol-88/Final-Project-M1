@@ -175,34 +175,34 @@ if (contactForm) {
     const messageInput = document.getElementById("message");
 
     let isValid = true;
-    let errorMessage = "";
+
+    // Limpiar mensajes de error previos
+    document.getElementById("name-error").textContent = "";
+    document.getElementById("email-error").textContent = "";
+    document.getElementById("subject-error").textContent = "";
+    document.getElementById("message-error").textContent = "";
 
     // Validación: Campo Nombre vacío
     if (nameInput.value.trim() === "") {
       isValid = false;
-      errorMessage += "El campo Nombre es obligatorio.\n";
+      document.getElementById("name-error").textContent = "El campo Nombre es obligatorio.";
       nameInput.classList.add("error"); 
+    } else if (nameInput.value.trim().toLowerCase() === "ironhack") {
+      isValid = false;
+      document.getElementById("name-error").textContent = "No puedes ser Ironhack, porque yo soy Ironhack.";
+      nameInput.classList.add("error");
     } else {
       nameInput.classList.remove("error");
     }
 
-    // Validación: Nombre "ironhack"
-    if (nameInput.value.trim().toLowerCase() === "ironhack") {
-      isValid = false;
-      errorMessage += "No puedes ser Ironhack, porque yo soy Ironhack.\n";
-      nameInput.classList.add("error");
-    }
-
-    // Validación: Email vacío o formato incorrecto (adicional al 'type="email"')
+    // Validación: Email vacío o formato incorrecto
     if (emailInput.value.trim() === "") {
       isValid = false;
-      errorMessage += "El campo Correo Electrónico es obligatorio.\n";
+      document.getElementById("email-error").textContent = "El campo Correo Electrónico es obligatorio.";
       emailInput.classList.add("error");
-    } else if (
-      !/^\S+@\S+\.\S+$/.test(emailInput.value.trim())
-    ) {
+    } else if (!/^\S+@\S+\.\S+$/.test(emailInput.value.trim())) {
       isValid = false;
-      errorMessage += "El formato del correo electrónico no es válido.\n";
+      document.getElementById("email-error").textContent = "El formato del correo electrónico no es válido.";
       emailInput.classList.add("error");
     } else {
       emailInput.classList.remove("error");
@@ -211,7 +211,7 @@ if (contactForm) {
     // Validación: Asunto vacío
     if (subjectInput.value.trim() === "") {
       isValid = false;
-      errorMessage += "El campo Asunto es obligatorio.\n";
+      document.getElementById("subject-error").textContent = "El campo Asunto es obligatorio.";
       subjectInput.classList.add("error");
     } else {
       subjectInput.classList.remove("error");
@@ -220,16 +220,18 @@ if (contactForm) {
     // Validación: Mensaje vacío
     if (messageInput.value.trim() === "") {
       isValid = false;
-      errorMessage += "El campo Mensaje es obligatorio.\n";
+      document.getElementById("message-error").textContent = "El campo Mensaje es obligatorio.";
       messageInput.classList.add("error");
     } else {
       messageInput.classList.remove("error");
     }
 
     if (!isValid) {
-      alert("Por favor, corrige los siguientes errores:\n" + errorMessage);
+      // No alert, solo mostrar errores debajo de cada campo
+      return;
     } else {
-      alert("¡Formulario enviado con éxito!");
+      // Opcional: mostrar mensaje de éxito debajo del formulario o limpiar campos
+      // alert("¡Formulario enviado con éxito!");
       this.submit(); 
     }
   });

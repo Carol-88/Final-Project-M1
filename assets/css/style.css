@@ -883,6 +883,21 @@ section:nth-of-type(even) {
     grid-template-columns: repeat(2, 1fr); 
   }
 
+  /* Estilos para errores de formulario */
+  .error-message {
+    color: #d32f2f;
+    font-size: 0.95em;
+    margin-top: 4px;
+    min-height: 1.2em;
+    transition: color 0.2s;
+  }
+  .form-group input.error,
+  .form-group textarea.error {
+    border-color: #d32f2f;
+    outline-color: #d32f2f;
+    background-color: #fff6f6;
+    transition: border-color 0.2s, background-color 0.2s;
+  }
   /* Grid de proyectos en pantallas grandes */
   @media (min-width: 1024px) {
     .projects-grid {
