@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
   navLinks.forEach((link) => {
     link.addEventListener("click", () => {
       if (window.innerWidth < 425) {
-        toggleMenu(); 
+        toggleMenu();
       }
     });
   });
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // --- 7. Animación de elementos al hacer scroll (Intersection Observer es más moderno y eficiente) ---
-window.animateOnScroll = new IntersectionObserver(
+  window.animateOnScroll = new IntersectionObserver(
     (entries, observer) => {
       // Crea un nuevo "Observador de Intersección".
       // 'entries' es una lista de elementos que están siendo observados y que han cambiado su estado de intersección.
@@ -100,7 +100,7 @@ window.animateOnScroll = new IntersectionObserver(
           // Si el elemento ha entrado en el área visible (viewport):
           entry.target.classList.add("visible");
           //  Una vez que el elemento se ha animado, dejamos de observarlo.
-          observer.unobserve(entry.target);          
+          observer.unobserve(entry.target);
         }
       });
     },
@@ -165,77 +165,8 @@ window.animateOnScroll = new IntersectionObserver(
 
 // --- VALIDACIÓN DEL FORMULARIO DE CONTACTO ---
 const contactForm = document.querySelector(".contact-form");
-if (contactForm) {
-  contactForm.addEventListener("submit", function (e) {
-    e.preventDefault();
+contactForm.addEventListener("submit", checkForm);
 
-    const nameInput = document.getElementById("name");
-    const emailInput = document.getElementById("email");
-    const subjectInput = document.getElementById("subject");
-    const messageInput = document.getElementById("message");
-
-    let isValid = true;
-
-    // Limpiar mensajes de error previos
-    document.getElementById("name-error").textContent = "";
-    document.getElementById("email-error").textContent = "";
-    document.getElementById("subject-error").textContent = "";
-    document.getElementById("message-error").textContent = "";
-
-    // Validación: Campo Nombre vacío
-    if (nameInput.value.trim() === "") {
-      isValid = false;
-      document.getElementById("name-error").textContent = "El campo Nombre es obligatorio.";
-      nameInput.classList.add("error"); 
-    } else if (nameInput.value.trim().toLowerCase() === "ironhack") {
-      isValid = false;
-      document.getElementById("name-error").textContent = "No puedes ser Ironhack, porque yo soy Ironhack.";
-      nameInput.classList.add("error");
-    } else {
-      nameInput.classList.remove("error");
-    }
-
-    // Validación: Email vacío o formato incorrecto
-    if (emailInput.value.trim() === "") {
-      isValid = false;
-      document.getElementById("email-error").textContent = "El campo Correo Electrónico es obligatorio.";
-      emailInput.classList.add("error");
-    } else if (!/^\S+@\S+\.\S+$/.test(emailInput.value.trim())) {
-      isValid = false;
-      document.getElementById("email-error").textContent = "El formato del correo electrónico no es válido.";
-      emailInput.classList.add("error");
-    } else {
-      emailInput.classList.remove("error");
-    }
-
-    // Validación: Asunto vacío
-    if (subjectInput.value.trim() === "") {
-      isValid = false;
-      document.getElementById("subject-error").textContent = "El campo Asunto es obligatorio.";
-      subjectInput.classList.add("error");
-    } else {
-      subjectInput.classList.remove("error");
-    }
-
-    // Validación: Mensaje vacío
-    if (messageInput.value.trim() === "") {
-      isValid = false;
-      document.getElementById("message-error").textContent = "El campo Mensaje es obligatorio.";
-      messageInput.classList.add("error");
-    } else {
-      messageInput.classList.remove("error");
-    }
-
-    if (!isValid) {
-      // No alert, solo mostrar errores debajo de cada campo
-      return;
-    } else {
-      // Opcional: mostrar mensaje de éxito debajo del formulario o limpiar campos
-      // alert("¡Formulario enviado con éxito!");
-      this.submit(); 
-    }
-  });
-}
 
 // --- CARGAR LOS 3 PRIMEROS PROYECTOS EN INDEX.HTML ---
 function getMainProjectsGrid() {
@@ -310,5 +241,76 @@ if (projectsGrid) {
   // Solo ejecuta en index.html, no en detail.html
   if (!window.location.pathname.includes('detail.html')) {
     fetchAndDisplayProjects(); // Llama a la función para cargar los proyectos al inicio
+  }
+}
+
+
+function checkForm(e) {
+  e.preventDefault();
+
+  const nameInput = document.getElementById("name");
+  const emailInput = document.getElementById("email");
+  const subjectInput = document.getElementById("subject");
+  const messageInput = document.getElementById("message");
+
+  let isValid = true;
+
+  // Limpiar mensajes de error previos
+  document.getElementById("name-error").textContent = "";
+  document.getElementById("email-error").textContent = "";
+  document.getElementById("subject-error").textContent = "";
+  document.getElementById("message-error").textContent = "";
+
+  // Validación: Campo Nombre vacío
+  if (nameInput.value.trim() === "") {
+    isValid = false;
+    document.getElementById("name-error").textContent = "El campo Nombre es obligatorio.";
+    nameInput.classList.add("error");
+  } else if (nameInput.value.trim().toLowerCase() === "ironhack") {
+    isValid = false;
+    document.getElementById("name-error").textContent = "No puedes ser Ironhack, porque yo soy Ironhack.";
+    nameInput.classList.add("error");
+  } else {
+    nameInput.classList.remove("error");
+  }
+
+  // Validación: Email vacío o formato incorrecto
+  if (emailInput.value.trim() === "") {
+    isValid = false;
+    document.getElementById("email-error").textContent = "El campo Correo Electrónico es obligatorio.";
+    emailInput.classList.add("error");
+  } else if (!/^\S+@\S+\.\S+$/.test(emailInput.value.trim())) {
+    isValid = false;
+    document.getElementById("email-error").textContent = "El formato del correo electrónico no es válido.";
+    emailInput.classList.add("error");
+  } else {
+    emailInput.classList.remove("error");
+  }
+
+  // Validación: Asunto vacío
+  if (subjectInput.value.trim() === "") {
+    isValid = false;
+    document.getElementById("subject-error").textContent = "El campo Asunto es obligatorio.";
+    subjectInput.classList.add("error");
+  } else {
+    subjectInput.classList.remove("error");
+  }
+
+  // Validación: Mensaje vacío
+  if (messageInput.value.trim() === "") {
+    isValid = false;
+    document.getElementById("message-error").textContent = "El campo Mensaje es obligatorio.";
+    messageInput.classList.add("error");
+  } else {
+    messageInput.classList.remove("error");
+  }
+
+  if (!isValid) {
+    // No alert, solo mostrar errores debajo de cada campo
+    return;
+  } else {
+    // Opcional: mostrar mensaje de éxito debajo del formulario o limpiar campos
+    alert("¡Formulario enviado con éxito!");
+    // this.submit(); 
   }
 }
