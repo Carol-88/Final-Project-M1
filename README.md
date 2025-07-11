@@ -1,6 +1,6 @@
 # Portfolio Web – Carolina Romero
 
-Este es mi primer proyecto web completo, desarrollado como parte de la certificación **(IFCD0210) DESARROLLO DE APLICACIONES CON TECNOLOGÍAS WEB**. Es un portafolio profesional totalmente responsive, que muestra mis proyectos recientes, detalles de cada uno y permite contactar conmigo a través de un formulario validado.
+Este es mi primer proyecto web completo en JavaScript puro, desarrollado como parte de la certificación **(IFCD0210) DESARROLLO DE APLICACIONES CON TECNOLOGÍAS WEB**. Es un portafolio profesional totalmente responsive, que muestra mis proyectos recientes, detalles de cada uno y permite contactar conmigo a través de un formulario validado.
 
 ---
 
@@ -87,7 +87,7 @@ PROYECTOM1/
 - Código modular y reutilizable (DRY, KISS).
 - Navegación entre páginas usando parámetros y rutas relativas.
 - Animaciones y responsive asegurados.
-- Validación de formularios tanto en HTML como en JS.
+- Validación de formularios en JS.
 - Sin archivos ni código duplicado.
 
 ---
