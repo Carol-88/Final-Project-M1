@@ -1,0 +1,34 @@
+[
+   {
+      "uuid":"4",
+       "name":"PetCare Manager",
+      "description":"Desarrollo app móvil con React Native",
+      "content":"Desarrollo de una aplicación móvil en React Native con TailwindCSS para la gestión de datos de mascotas, diseñada para ser intuitiva y escalable. Ideación del proyecto para cubrir una necesidad personal, búsqueda de compañeros, creación de documentación, repositorios, facilitar recursos y conversación sobre el proyecto, aprobación de diseños y modificaciones, desarrollo en frontend.",
+      "image":"/assets/images/logopetcare.svg",
+      "completed_on":"Julio 11, 2025"
+   },
+   {
+      "uuid":"3",
+      "name":"LibraryApp",
+      "description":"Desarrollo app móvil con Flutter",
+      "content":"Creación de una aplicación en Flutter desde 0, incluyendo el diseño en Figma, que permite buscar libros, añadirlos a listas (favoritos, leídos, pendientes) y valorarlos con estrellas, utilizando la API de OpenLibrary. Implementación de funcionalidades de búsqueda avanzada, integrando filtros por autor, género y título en el mismo input.",
+      "image":"https://github.com/Carol-88/LibraryApp/blob/main/assets/icon/icon_libraryapp.png?raw=true",
+      "completed_on":"Febrero 20, 2025"
+   },
+   {
+      "uuid":"2",      
+      "name":"CloudSolute",
+      "description":"Desarrollo web frontend",
+      "content":" Desarrollo de funcionalidades en aplicaciones frontend con Next.js y TailwindCSS, mejorando la experiencia del usuario al construir una interfaz más sencilla y explicaciones al usuario de cómo funciona la aplicación. Integración con APIs REST y gestión de videos en formato HLS, migración de React a Next.js, colaboración en el diseño, flujo del usuario, implementación de funcionalidades y maquetación. Colaboración en un entorno remoto utilizando GitHub Projects Kanban para la organización de tareas y comunicación.",
+      "image":"/assets/images/bannercloudsolute.png",
+      "completed_on":"Octubre 14, 2024"
+   },
+   {
+      "uuid":"1",     
+      "name":"AdoptaUnJunior",
+      "description":"Desarrollo web frontend",
+      "content":"Maquetación de interfaces web siguiendo diseños en Figma, utilizando React (migración a Next.js 14), TailwindCSS y prácticas modernas de desarrollo. Apoyo en la gestión ágil como Scrum Master, ayudando a organizar tareas, facilitar reuniones y gestionar el backlog del proyecto en Trello y GitHub Projects Kanban. Participación en sprints colaborativos y resolución de problemas técnicos en equipo",
+      "image":"/assets/images/bannerauj.jpg",
+      "completed_on":"Septiembre 24, 2024"
+   }
+]
