@@ -9,10 +9,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const projectDescription = document.getElementById("project-description");
   const completedDate = document.getElementById("completed-date");
   // Selecciona SOLO el grid de la sección 'Mis Proyectos' en detail.html
-  const projectsGrid = document.querySelector('.projects-section #projects-grid');
+  const projectsGrid = document.querySelector(
+    ".projects-section #projects-grid"
+  );
 
-  const API_URL =
-    "https://raw.githubusercontent.com/ironhack-jc/mid-term-api/main/projects";
+  const API_URL = "../projects.json"; //
 
   // Función para obtener el parámetro 'id' de la URL
   function getProjectIdFromUrl() {
@@ -86,8 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
       if (availableProjects.length === 0) {
-        projectsGrid.innerHTML =
-          "<p>No hay otros proyectos disponibles.</p>";
+        projectsGrid.innerHTML = "<p>No hay otros proyectos disponibles.</p>";
         return;
       }
 
@@ -114,7 +114,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
       randomProjects.forEach((project, index) => {
         const projectCard = document.createElement("article");
-        projectCard.classList.add("project-card", "fade-in", "slide-up", "visible"); // Agrega 'visible' para forzar visibilidad
+        projectCard.classList.add(
+          "project-card",
+          "fade-in",
+          "slide-up",
+          "visible"
+        ); // Agrega 'visible' para forzar visibilidad
         projectCard.style.transitionDelay = `${index * 0.1}s`;
 
         projectCard.innerHTML = `
@@ -133,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Error al cargar otros proyectos:", error);
       projectsGrid.innerHTML =
         "<p>Lo siento, no se pudieron cargar otros proyectos.</p>";
-    } 
+    }
 
     const currentYear = new Date().getFullYear();
     const yearElement = document.getElementById("current-year");
